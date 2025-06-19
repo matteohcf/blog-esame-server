@@ -24,7 +24,9 @@ Il backend è disponibile all'api:
 * `GET /articles` – Restituisce tutti gli articoli
 * `GET /articles/:id` – Restituisce un singolo articolo
 
-#### Dockerfile per il backend
+NB: è stato molto importante configurare il file [security.yaml](./config/packages/security.yaml) sia per gestire l'autenticazione JWT che per definire i permessi di accesso alle varie rotte.
+
+#### [Dockerfile](./Dockerfile) per il backend
 
 Il backend è stato containerizzato per Render con un semplice **Dockerfile** basato su PHP 8.2. Questo permette di installare le dipendenze necessarie, configurare l’ambiente e avviare il server Symfony.
 

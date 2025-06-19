@@ -19,8 +19,8 @@ use Doctrine\ORM\Mapping as ORM;
         new Get(),
         new GetCollection(),
         new Post(),
-        new Put(),        // abilita PUT
-        new Patch(),      // opzionale
+        new Put(),
+        new Patch(),
         new Delete(),
     ]
 )]
