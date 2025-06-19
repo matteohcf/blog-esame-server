@@ -19,10 +19,10 @@ Il backend è disponibile all'api:
 * `POST /register` – Registrazione utente
 * `POST /login_check` – Login con JWT (gestito tramite `lexik/jwt-authentication-bundle`)
 * `GET /users/me` – Restituisce i dati dell’utente autenticato
-* `POST /articles` – Crea un nuovo articolo
-* `PUT /articles/:id` – Modifica un articolo
-* `GET /articles` – Restituisce tutti gli articoli
-* `GET /articles/:id` – Restituisce un singolo articolo
+* `POST /articles` – Crea un nuovo post
+* `PUT /articles/:id` – Modifica un post
+* `GET /articles` – Restituisce tutti i post
+* `GET /articles/:id` – Restituisce un singolo post
 
 NB: è stato molto importante configurare il file [security.yaml](./config/packages/security.yaml) sia per gestire l'autenticazione JWT che per definire i permessi di accesso alle varie rotte.
 
@@ -55,7 +55,7 @@ CMD composer install --no-dev --optimize-autoloader && php -S 0.0.0.0:8000 -t pu
 ```
 
 ### Postman Collection
-Per testare facilmente le API, puoi usare la collection Postman già pronta:
+Per testare facilmente le API, se necessario, è possibile scaricare la collection Postman
 
 [Apri la Collection](./esame.postman_collection.json)
 
