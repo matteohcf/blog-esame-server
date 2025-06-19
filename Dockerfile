@@ -16,6 +16,9 @@ COPY . .
 
 RUN chown -R www-data:www-data /var/www
 
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
 EXPOSE 8000
 
-CMD composer install --no-dev --optimize-autoloader && php -S 0.0.0.0:8000 -t public
+ENTRYPOINT ["docker-entrypoint.sh"]
