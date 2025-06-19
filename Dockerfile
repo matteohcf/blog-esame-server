@@ -8,19 +8,14 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
-# 🔥 COPIA TUTTO IL PROGETTO PRIMA!
-COPY . .
+COPY composer.json composer.lock ./
 
-# ✅ Composer install con tutto il codice già presente
 RUN composer install --no-dev --optimize-autoloader
 
-# Permessi
-RUN chown -R www-data:www-data /var/www
+COPY . .
 
-# ENTRYPOINT con migrations
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+RUN chown -R www-data:www-data /var/www
 
 EXPOSE 8000
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+CMD composer install --no-dev --optimize-autoloader && php -S 0.0.0.0:8000 -t public
