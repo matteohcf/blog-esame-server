@@ -8,16 +8,16 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
-COPY composer.json composer.lock ./
-
-RUN composer require symfony/runtime --no-interaction
-
-RUN composer install --no-dev --optimize-autoloader
-
+# 🔥 COPIA TUTTO IL PROGETTO PRIMA!
 COPY . .
 
+# ✅ Composer install con tutto il codice già presente
+RUN composer install --no-dev --optimize-autoloader
+
+# Permessi
 RUN chown -R www-data:www-data /var/www
 
+# ENTRYPOINT con migrations
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
