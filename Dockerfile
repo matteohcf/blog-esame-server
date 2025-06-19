@@ -1,18 +1,18 @@
-FROM composer:2 AS composer
-
 FROM php:8.2-fpm
 
 RUN apt-get update && apt-get install -y \
     git unzip libpq-dev libzip-dev zip \
     && docker-php-ext-install pdo pdo_pgsql zip
 
-COPY --from=composer /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
-COPY . .
+COPY composer.json composer.lock ./
 
 RUN composer install --no-dev --optimize-autoloader
+
+COPY . .
 
 RUN chown -R www-data:www-data /var/www
 
