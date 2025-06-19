@@ -13,6 +13,9 @@ services:
             fromDatabase:
                 name: blogdb_7c3k
                 property: connectionStringInternal
+            startCommand: |
+                php bin/console doctrine:migrations:migrate --no-interaction
+                php-fpm
 
 databases:
     - name: blogdb_7c3k
